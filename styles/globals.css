@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body > * {
+  @apply flex-grow;
+}
+
+.btn {
+  @apply w-full h-12 bg-primary rounded-md disabled:text-opacity-35 disabled:cursor-not-allowed disabled:bg-opacity-35
+}
+
+.btn-reset {
+  @apply  text-xl uppercase text-primary-dark
+}
+
+.percent-btn {
+  @apply text-white text-2xl font-bold bg-primary-dark
+}
+
+.tip-form {
+  @apply w-full grid grid-cols-1 desktop:grid-cols-2 grid-flow-row desktop:grid-flow-col gap-12
+}
+
+.tips {
+  @apply grid grid-rows-3 grid-cols-2 desktop:grid-rows-2 desktop:grid-cols-3 place-items-stretch grid-flow-row gap-3.5
+}
+
+.text-input {
+  @apply h-12 w-full text-primary-medium-dark placeholder-primary-medium-dark placeholder-opacity-35 font-bold text-2xl text-right border-none bg-primary-extra-light rounded-md focus:outline-none focus:outline-primary
+}
+
+.attribution-link {
+  @apply hover:opacity-[0.35]
+}

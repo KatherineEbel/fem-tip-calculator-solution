@@ -47,7 +47,7 @@ export default function TipForm() {
           />
         </div>
         <button
-          className="btn btn-reset"
+          className="btn btn-reset font-bold"
           type="reset"
           disabled={empty}
           onClick={reset}

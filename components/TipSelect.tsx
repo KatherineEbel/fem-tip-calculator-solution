@@ -47,7 +47,7 @@ export default function TipSelect({ defaultValue, onTipSelect }: Props) {
             Custom Tip
           </label>
           <input
-            className="text-input"
+            className="text-input placeholder-shown:text-center placeholder-primary-medium-dark placeholder-opacity-100"
             type="number"
             placeholder="Custom"
             name="custom-tip"

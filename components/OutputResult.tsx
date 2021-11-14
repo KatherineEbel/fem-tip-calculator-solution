@@ -6,7 +6,7 @@ interface Props {
 export default function OutputResult({ label, amount }: Props) {
   return (
     <div className="flex flex-row-reverse justify-between">
-      <h2 className="text-primary text-[2rem]">${amount}</h2>
+      <h2 className="text-primary text-[2rem] desktop:text-5xl">${amount}</h2>
       <div>
         <h3 className="text-white">{label}</h3>
         <p>/ person</p>

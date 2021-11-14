@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="place-self-center desktop:m-0">
-        <h1 className="mt-12 mb-10">
+        <h1 className="mt-12">
           <span className="sr-only">Splitter</span>
           <Image src={logo} alt="Splitter" />
         </h1>

@@ -37,7 +37,7 @@ export default function NumberInput({
         <input
           name={name}
           id={name}
-          className={`row-span-full col-span-full justify-self-end text-input ${
+          className={`row-span-full col-span-full justify-self-end text-input text-primary-dark placeholder-primary-dark placeholder-opacity-35 ${
             error ? 'outline-error' : ''
           }`}
           type="number"

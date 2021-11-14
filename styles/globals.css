@@ -25,7 +25,7 @@ body > * {
 }
 
 .btn-reset {
-  @apply  text-xl text-primary-dark bg-primary disabled:bg-primary disabled:opacity-35 disabled:cursor-not-allowed
+  @apply  text-xl text-primary-dark bg-primary disabled:text-opacity-35 disabled:opacity-35 disabled:cursor-not-allowed
 }
 
 .btn-percent {
@@ -41,11 +41,11 @@ body > * {
 }
 
 .text-input {
-  @apply h-12 w-full text-primary-medium-dark placeholder-primary-medium-dark placeholder-opacity-35 font-bold text-2xl text-right border-none bg-primary-extra-light rounded-md focus:outline-none focus:outline-primary
+  @apply h-12 w-full text-primary-medium-dark font-bold text-2xl text-right border-none bg-primary-extra-light rounded-md focus:outline-none focus:outline-primary
 }
 
 .output-container {
-  @apply flex flex-col gap-12 desktop:justify-between bg-primary-dark rounded-2xl p-10
+  @apply flex flex-col gap-12 desktop:justify-between bg-primary-dark rounded-2xl p-6 desktop:p-10
 }
 
 .attribution-link {

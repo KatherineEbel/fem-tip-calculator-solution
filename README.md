@@ -51,7 +51,7 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- React Context Api
+- React Custom Hook
 - [React Testing Library](https://testing-library.com/)
 - [Jest](https://jestjs.io/)
 - [Next.js](https://nextjs.org/) - React framework

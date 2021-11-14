@@ -21,7 +21,7 @@ describe('utils', () => {
       })
     })
 
-    it(`has correct error if invalid bill amount provided`, async () => {
+    it(`displays error if invalid bill amount provided`, async () => {
       const actual = getTipResult('foo', 5, '1')
       expect(actual.error).not.toBeUndefined()
       expect(actual.error).toBe('Invalid price provided')

@@ -1,3 +1,10 @@
+import {
+  CANT_BE_ZERO,
+  INVALID_NUM_PEOPLE,
+  INVALID_PRICE,
+  UNEXPECTED_ERROR,
+} from './constants'
+
 export interface TipResult {
   totalPerPerson: string
   tipPerPerson: string
@@ -21,16 +28,15 @@ export const getTipResult = (
   let error: string | undefined
   const initialPrice = parseFloat(bill)
   const divider = +numPeople
-  if (divider === 0) error = "Can't be zero"
-  if (isNaN(divider)) error = 'Invalid number of people'
-  if (isNaN(initialPrice)) error = 'Invalid price provided'
+  if (divider === 0) error = CANT_BE_ZERO
+  if (isNaN(divider)) error = INVALID_NUM_PEOPLE
+  if (isNaN(initialPrice)) error = INVALID_PRICE
   if (error) return { tipPerPerson: '0.00', totalPerPerson: '0.00', error }
   let tip = (+percent / 100) * initialPrice
   let totalPrice = tip + initialPrice
   let tipPerPerson = formatPrice(tip / divider)
   let totalPerPerson = formatPrice(totalPrice / divider)
-  if (isNaN(+tipPerPerson) || isNaN(+totalPerPerson))
-    error = 'Unexpected error occurred'
+  if (isNaN(+tipPerPerson) || isNaN(+totalPerPerson)) error = UNEXPECTED_ERROR
   return {
     totalPerPerson,
     tipPerPerson,

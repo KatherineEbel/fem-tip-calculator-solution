@@ -21,7 +21,7 @@ body > * {
 
 
 .btn {
-  @apply w-full h-12 text-2xl uppercase rounded-md hover:bg-primary-lighter hover:text-primary-dark
+  @apply w-full h-12 text-2xl uppercase rounded-md focus:bg-primary-lighter hover:bg-primary-lighter hover:text-primary-dark
 }
 
 .btn-reset {
@@ -38,6 +38,10 @@ body > * {
 
 .tips {
   @apply grid grid-rows-3 grid-cols-2 desktop:grid-rows-2 desktop:grid-cols-3 place-items-stretch grid-flow-row gap-3.5
+}
+
+.tip-radio-wrapper input:focus + label {
+  @apply bg-primary-lighter
 }
 
 .text-input {

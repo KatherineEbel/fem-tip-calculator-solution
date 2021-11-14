@@ -1,5 +1,5 @@
 import TipRadioButton from './TipRadioButton'
-import { ChangeEventHandler, useState } from 'react'
+import { useState } from 'react'
 import TIP_AMOUNTS from '../lib/constants'
 
 interface Props {
@@ -7,16 +7,13 @@ interface Props {
   defaultValue: number
 }
 
-export default function TipSelect({ defaultValue, onTipSelect }: Props) {
+export default function TipFieldset({ defaultValue, onTipSelect }: Props) {
   const [tip, setTip] = useState<number | undefined>(defaultValue)
   const [customTip, setCustomTip] = useState<string>('')
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = ({
-    target: { type, value },
-  }) => {
+  const handleChange = (type: 'radio' | 'number', value: number) => {
     if (type === 'number') {
-      if (isNaN(+value)) return
-      setCustomTip(value)
+      setCustomTip(value + '')
     }
     if (type === 'radio') {
       // clear custom tip if radio selected
@@ -28,21 +25,18 @@ export default function TipSelect({ defaultValue, onTipSelect }: Props) {
   }
 
   return (
-    <div>
-      <label htmlFor="tip" className="mb-4 block">
-        Select Tip %
-      </label>
-      <ul className="tips">
+    <fieldset>
+      <legend className="mb-4 block">Select Tip %</legend>
+      <div className="tips">
         {TIP_AMOUNTS.map((v) => (
-          <li key={v}>
-            <TipRadioButton
-              checked={tip === v}
-              amount={v}
-              onChange={handleChange}
-            />
-          </li>
+          <TipRadioButton
+            key={v}
+            checked={tip === v}
+            amount={v}
+            onChange={handleChange}
+          />
         ))}
-        <li>
+        <div>
           <label htmlFor="custom-tip" className="sr-only">
             Custom Tip
           </label>
@@ -53,10 +47,13 @@ export default function TipSelect({ defaultValue, onTipSelect }: Props) {
             name="custom-tip"
             id="custom-tip"
             value={customTip}
-            onChange={handleChange}
+            onChange={({ target: { type, value } }) => {
+              if (isNaN(+value)) return
+              handleChange('number', +value)
+            }}
           />
-        </li>
-      </ul>
-    </div>
+        </div>
+      </div>
+    </fieldset>
   )
 }

@@ -5,12 +5,12 @@ interface Props {
 
 export default function OutputResult({ label, amount }: Props) {
   return (
-    <div className="flex flex-row-reverse justify-between">
+    <section className="flex flex-row-reverse justify-between">
       <h2 className="text-primary text-[2rem] desktop:text-5xl">${amount}</h2>
       <div>
         <h3 className="text-white">{label}</h3>
-        <p>/ person</p>
+        <h4>/ person</h4>
       </div>
-    </div>
+    </section>
   )
 }

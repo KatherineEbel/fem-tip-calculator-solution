@@ -1,20 +1,21 @@
-import { ChangeEventHandler } from 'react'
+import { useState } from 'react'
 
 interface Props {
   checked: boolean
   amount: number
-  onChange: ChangeEventHandler
+  onChange: (type: 'radio' | 'number', value: number) => void
 }
+
 export default function TipRadioButton({ amount, checked, onChange }: Props) {
+  const [localValue, setLocalValue] = useState(amount)
   const name = `tip-${amount}`
+
+  const handleSelect = (value: number = localValue) => {
+    onChange('radio', value)
+  }
+
   return (
-    <label
-      htmlFor={name}
-      className={`relative grid place-items-center btn ${
-        checked ? 'bg-primary text-primary-dark' : 'bg-primary-dark text-white'
-      }`}
-    >
-      {amount}%
+    <div className="tip-radio-wrapper">
       <input
         className="absolute h-0 w-0 opacity-0"
         type="radio"
@@ -22,8 +23,24 @@ export default function TipRadioButton({ amount, checked, onChange }: Props) {
         id={`tip-${amount}`}
         value={amount}
         checked={checked}
-        onChange={onChange}
+        onKeyUp={(e) => {
+          if (e.key === 'Enter') handleSelect()
+        }}
+        onChange={(e) => {
+          setLocalValue(+e.target.value)
+          handleSelect(+e.target.value)
+        }}
       />
-    </label>
+      <label
+        htmlFor={name}
+        className={`relative grid place-items-center btn  ${
+          checked
+            ? 'bg-primary text-primary-dark'
+            : 'bg-primary-dark text-white'
+        }`}
+      >
+        {amount}%
+      </label>
+    </div>
   )
 }

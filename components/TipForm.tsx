@@ -1,7 +1,7 @@
 import NumberInput from './NumberInput'
-import TipSelect from './TipSelect'
+import TipFieldset from './TipFieldset'
 import OutputResult from './OutputResult'
-import useTip from '../lib/hooks/useTip'
+import useTip from 'lib/hooks/useTip'
 
 export default function TipForm() {
   const {
@@ -9,15 +9,24 @@ export default function TipForm() {
     tip,
     numPeople,
     result,
+    complete,
     empty,
     setBill,
     setTip,
     setNumPeople,
     reset,
+    calculateTip,
   } = useTip()
 
   return (
-    <form className="tip-form">
+    <form
+      className="tip-form"
+      onReset={reset}
+      onSubmit={(e) => {
+        e.preventDefault()
+        calculateTip()
+      }}
+    >
       <div className="flex flex-col gap-10">
         <NumberInput
           label="Bill"
@@ -26,7 +35,7 @@ export default function TipForm() {
           error={result?.error?.includes('price') ? result?.error : ''}
           onChange={setBill}
         />
-        <TipSelect defaultValue={tip} onTipSelect={setTip} />
+        <TipFieldset defaultValue={tip} onTipSelect={setTip} />
         <NumberInput
           label="Number of People"
           iconName="person"
@@ -47,14 +56,19 @@ export default function TipForm() {
           />
         </div>
         <button
-          className="btn btn-reset font-bold"
+          className="btn btn-reset font-bold focus:outline-primary"
           type="reset"
           disabled={empty}
-          onClick={reset}
         >
           Reset
         </button>
       </div>
+      <input
+        className="sr-only"
+        type="submit"
+        value="Calculate Tip"
+        disabled={!complete}
+      />
     </form>
   )
 }

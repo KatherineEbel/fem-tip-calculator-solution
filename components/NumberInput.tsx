@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import dollar from 'public/images/icon-dollar.svg'
 import person from 'public/images/icon-person.svg'
-import { CANT_BE_ZERO, INVALID_PRICE } from '../lib/constants'
+import { INVALID_NUMBER } from 'lib/constants'
 
 type InputIcon = 'dollar' | 'person'
 const icons: Record<string, any> = {
@@ -21,11 +21,9 @@ interface Props {
 // TODO: better type?
 const errorMap: Record<string, any> = {
   bill: {
-    message: INVALID_PRICE,
     matcher: new RegExp(/[0-9.]/i),
   },
   'number-of-people': {
-    message: CANT_BE_ZERO,
     matcher: new RegExp(/[0-9]/i),
   },
 }
@@ -41,7 +39,6 @@ export default function NumberInput({
   const [localError, setLocalError] = useState('')
   const name = label.toLowerCase().split(' ').join('-')
   const matcher = errorMap[name].matcher
-  const errorMessage = errorMap[name].message
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
@@ -72,7 +69,10 @@ export default function NumberInput({
               return
             }
             if (!matcher.test(e.key)) {
-              setLocalError(errorMessage)
+              if (/Backspace|Tab/.test(e.key)) {
+                return
+              }
+              setLocalError(INVALID_NUMBER)
             }
           }}
           onChange={({ target: { value } }) => {

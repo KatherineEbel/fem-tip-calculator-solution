@@ -3,7 +3,7 @@ import TipFieldset from 'components/TipFieldset'
 import userEvent from '@testing-library/user-event'
 
 describe('TipSelect', () => {
-  it(`sets highlights 25% when selected`, async () => {
+  it(`highlights 25% when selected`, async () => {
     render(<TipFieldset onTipSelect={() => {}} defaultValue={15} />)
     const twentyFivePercentRadio = screen.getByLabelText('25%')
     userEvent.click(twentyFivePercentRadio)

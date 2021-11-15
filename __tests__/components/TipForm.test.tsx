@@ -60,7 +60,16 @@ describe('TipForm', () => {
     expect(total).toHaveTextContent('$23.00')
   })
 
-  it(`can calculate a custom tip`, async () => {})
+  it(`can set custom tip to zero`, async () => {
+    render(<TipForm />)
+    const bill = screen.getByLabelText('Bill')
+    const numPeople = screen.getByLabelText('Number of People')
+    const customTip = screen.getByLabelText('Custom Tip')
+    userEvent.type(bill, '55.0')
+    userEvent.type(numPeople, '1')
+    userEvent.type(customTip, '0')
+    screen.getByRole('heading', { name: '$55.00' })
+  })
 
   it(`disables submit input for not complete state`, async () => {
     render(<TipForm />)

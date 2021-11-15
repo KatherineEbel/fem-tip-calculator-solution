@@ -21,6 +21,15 @@ describe('utils', () => {
       })
     })
 
+    it(`can calculate no tip`, async () => {
+      const actual = getTipResult('55.00', 0, '1')
+      expect(actual.error).toBeUndefined()
+      expect(actual).toEqual({
+        tipPerPerson: '0.00',
+        totalPerPerson: '55.00',
+      })
+    })
+
     it(`displays error if invalid bill amount provided`, async () => {
       const actual = getTipResult('foo', 5, '1')
       expect(actual.error).not.toBeUndefined()

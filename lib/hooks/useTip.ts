@@ -42,7 +42,12 @@ function tipReducer(state: TipState, { type, payload }: TipAction): TipState {
       const empty = updatedState.every((v) => {
         return v === '' || v === 0
       })
-      const complete = empty ? false : updatedState.every((v) => v)
+      const complete = empty
+        ? false
+        : updatedState.every((v) => {
+            if (v === 0) return true
+            return v
+          })
       return { ...state, ...payload, complete, empty }
     case TipActionKind.CALCULATE_RESULT:
       const result = getTipResult(bill, tip, numPeople)
@@ -53,7 +58,7 @@ function tipReducer(state: TipState, { type, payload }: TipAction): TipState {
     case TipActionKind.RESET:
       return initialState
     default:
-      console.log('Unhandled TipAction', type)
+      console.error('Unhandled TipAction', type)
       return state
   }
 }
